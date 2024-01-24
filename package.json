@@ -19,5 +19,5 @@
   "devDependencies": {
     "nodemon": "^3.0.3"
   },
-  "description": ""
+  "description": "Требуемые зависимости: express sequezlize cors dotenv pg pg-hstore nodemon"
 }
