@@ -3,18 +3,42 @@ const {QueryTypes} = require('sequelize')
 const sequelize = require('../database')
 const ToDo = require('../model/model')
 
-
+function up_data_id(id, data_id)
+    {
+        if(data_id) return `UPDATE "ToDos" SET id='${data_id}' WHERE id=${id}`
+        else return undefined
+    }
+function up_data_title(id, data_title)
+{
+    if(data_title) return `UPDATE "ToDos" SET title='${data_title}' WHERE id=${id}`
+    else return undefined
+}
+function up_data_description(id, data_description)
+{
+    if(data_description) return `UPDATE "ToDos" SET title='${data_description}' WHERE id=${id}`
+    else return undefined
+}
+function up_data_isDone(id, data_isDone)
+{
+    if(data_isDone) return `UPDATE "ToDos" SET title='${data_isDone}' WHERE id=${id}`
+    else return undefined
+}
 class z4Controller
 {
     async update_todo(req, res)
     {
-        const data = req.body
         const {id} = req.params
         if(!id) return res.json({messenge: "Вы не ввели какой ID нужно редактировать!"})
-        const update_rows = await sequelize.query(`
-        UPDATE "ToDos" SET id='${data.id}', title='${data.title}', description='${data.description}', "isDone"=${data.isDone} WHERE id=${id}
-        `)
-        return res.json(update_rows)
+        const data = req.body
+        let query_id=up_data_id(id, data.id)
+        let query_title=up_data_title(id, data.title)
+        let query_description=up_data_description(id, data.description)
+        let query_isDone=up_data_isDone(id, data.isDone)
+        if(query_id) sequelize.query(query_id)
+        if(query_title) sequelize.query(query_title)
+        if(query_description) sequelize.query(query_description)
+        if(query_isDone) sequelize.query(query_isDone)
+        return res.json({messenge: "Work!"})
     }
     
 }
