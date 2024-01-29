@@ -8,4 +8,17 @@ const ToDo = sequelize.define('ToDo',{
     isDone: {type: DataTypes.BOOLEAN, allowNull: false}
 })
 
-module.exports = ToDo
+const User = sequelize.define('users', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    login: {type: DataTypes.STRING, unique:true, allowNull: true},
+    password: {type: DataTypes.STRING, allowNull: true},
+    role: {type: DataTypes.STRING, defaultValue: "user"}
+})
+
+User.hasMany(ToDo)
+ToDo.belongsTo(User)
+
+module.exports = {
+    User,
+    ToDo
+}

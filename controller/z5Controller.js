@@ -21,12 +21,12 @@ class z5Controller
         const {id} = req.query
         if(!id) return res.send({ERROR: "Не удалось найти ID!"})
         let query_id=del_id(id)
-        let check_id=select_id(id)
+        let check_id=await ToDo.findAll({where: {id}})
+        if(!check_id[0]) return res.json({ERROR: `Данные по ID ${id} не найдены!`})
         try {
-            await sequelize.query(check_id)
             await sequelize.query(query_id)
         } catch (error) {
-            return res.send({ERROR: `Данные по ID ${id} не найдены! Нечего удалять...`})
+            return res.send({ERROR: `Произошла неизвестная ошибка!`})
         }
         sequelize.query(query_id)
         res.send({messenge: `Данные по ${id} ID удалены!`})

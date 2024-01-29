@@ -1,8 +1,1 @@
-Требуемые зависимости:
-express
-sequezlize
-cors
-dotenv
-pg
-pg-hstore
-nodemon
+Требуемые зависимости: express sequelize cors dotenv pg pg-hstore nodemon bcrypt crypto-js jsonwebtoken
