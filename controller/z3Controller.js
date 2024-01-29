@@ -5,8 +5,8 @@ class z3Controller
 {
     async create(req, res)
     {
-        const {id, title, description, isDone} = req.body
-        const type = await ToDo.create({id, title, description, isDone})
+        const {title, description, isDone} = req.body
+        const type = await ToDo.create({title, description, isDone})
         return res.json(type)
     }
 }

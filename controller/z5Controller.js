@@ -23,7 +23,8 @@ class z5Controller
         let query_id=del_id(id)
         let check_id=select_id(id)
         try {
-            sequelize.query(check_id)
+            await sequelize.query(check_id)
+            await sequelize.query(query_id)
         } catch (error) {
             return res.send({ERROR: `Данные по ID ${id} не найдены! Нечего удалять...`})
         }

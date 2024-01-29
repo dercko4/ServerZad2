@@ -34,10 +34,10 @@ class z4Controller
         let query_title=up_data_title(id, data.title)
         let query_description=up_data_description(id, data.description)
         let query_isDone=up_data_isDone(id, data.isDone)
-        if(query_id) sequelize.query(query_id)
-        if(query_title) sequelize.query(query_title)
-        if(query_description) sequelize.query(query_description)
-        if(query_isDone) sequelize.query(query_isDone)
+        if(query_id) await sequelize.query(query_id)
+        if(query_title) await sequelize.query(query_title)
+        if(query_description) await sequelize.query(query_description)
+        if(query_isDone) await sequelize.query(query_isDone)
         return res.json({messenge: "Work!"})
     }
     
