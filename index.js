@@ -5,7 +5,7 @@ const {QueryTypes} = require('sequelize')
 const sequelize = require('./database')
 const CryptoJS = require('crypto-js')
 
-const PORT = 3100
+const PORT = 7000
 const app = express()
 const cors = require('cors')
 const router1 = require('./router1/index')

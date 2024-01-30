@@ -1,8 +1,10 @@
 const Router = require('express')
 const z1Controller = require('../controller/z1Controller')
 const routes = new Router()
+const checkRoleMiddleware = require('../checkRoleWare')
+const authMiddleware = require('../authMiddleware')
 
-routes.get('/getall', z1Controller.getAll)
-routes.get('/getid/:id', z1Controller.getID)
+routes.get('/getall',checkRoleMiddleware('admin'), z1Controller.getAll)
+routes.get('/getid/:id', authMiddleware, z1Controller.getID)
 
 module.exports=routes

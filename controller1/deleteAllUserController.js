@@ -1,13 +1,13 @@
 const { Sequelize } = require('../database')
 const {QueryTypes} = require('sequelize')
 const sequelize = require('../database')
-const {ToDo} = require('../model/model')
+const {User} = require('../model/model')
 
-class z5Controller
+class deleteAllUserController
 {
-    async del_all(req, res)
+    async del_all_users(req, res)
     {
-        let query_del_all=`DELETE FROM "ToDos"`
+        let query_del_all=`DELETE FROM users`
         const test_del_all = await sequelize.query(query_del_all)
         if(test_del_all) res.send({messenge: "Все записи удалены!"})
         else res.send({ERROR: "Не удалось удалить записи!"})
@@ -17,4 +17,4 @@ class z5Controller
 
 
 
-module.exports= new z5Controller()
+module.exports= new deleteAllUserController()

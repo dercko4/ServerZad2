@@ -2,12 +2,11 @@ const ApiError = require('../ApiError')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const {User} = require('../model/model')
-const { password } = require('pg/lib/defaults')
 
-const generateJwt = (id, login, role) =>
+const generateJwt = (id_user, login, role) =>
 {
     return jwt.sign(
-        {id, login, role},
+        {id_user, login, role},
         process.env.SECRET_KEY,
         {expiresIn: '24h'}
     )
@@ -17,7 +16,7 @@ class AuthController
 {
     async registration(req, res, next)
     {
-        const {login, password, role} = req.body
+        const {login, password} = req.body
         if(!login||!password)
         {
             return next(ApiError.badRequest("Не введён логин или пароль!"))
@@ -28,8 +27,8 @@ class AuthController
             return next(ApiError.badRequest("Пользователь с таким логином уже создан! Попробуйте другой"))
         }
         const hashPassword = await bcrypt.hash(password, 5)
-        const user = await User.create({login, password: hashPassword, role})
-        const token = generateJwt(user.id, user.login, user.role)
+        const user = await User.create({login, password: hashPassword})
+        const token = generateJwt(user.id_user, user.login,)
         return res.json({token})
     }
 
@@ -47,7 +46,7 @@ class AuthController
         {
             return next(ApiError.badRequest("Введен неверный пароль!"))
         }
-        const token = generateJwt(user.id, user.login, user.role)
+        const token = generateJwt(user.id_user, user.login, user.role)
         return res.json({token})
     }
 }

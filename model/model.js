@@ -9,7 +9,7 @@ const ToDo = sequelize.define('ToDo',{
 })
 
 const User = sequelize.define('users', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id_user: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     login: {type: DataTypes.STRING, unique:true, allowNull: true},
     password: {type: DataTypes.STRING, allowNull: true},
     role: {type: DataTypes.STRING, defaultValue: "user"}

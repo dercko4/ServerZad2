@@ -1,7 +1,7 @@
 const { Sequelize } = require('../database')
 const {QueryTypes} = require('sequelize')
 const sequelize = require('../database')
-const ToDo = require('../model/model')
+const {ToDo} = require('../model/model')
 class z1Controller
 {
     async getAll(req, res)
