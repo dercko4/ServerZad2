@@ -5,6 +5,6 @@ const checkRoleMiddleware = require('../checkRoleWare')
 const authMiddleware = require('../authMiddleware')
 
 routes.get('/getall',checkRoleMiddleware('admin'), z1Controller.getAll)
-routes.get('/getid/:id', authMiddleware, z1Controller.getID)
+routes.get('/getid', authMiddleware, z1Controller.getID)
 
 module.exports=routes

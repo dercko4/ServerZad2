@@ -38,8 +38,8 @@ class z1Controller
     }
     async getID(req, res)
     {
-        const {id} = req.params
-        const get_id = await ToDo.findAll({where: {id}})
+        const userIdUser = req.user.id_user
+        const get_id = await ToDo.findAll({where: {userIdUser}})
         return res.json(get_id)
     }
 }

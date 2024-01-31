@@ -5,7 +5,7 @@ if (req.method === "OPTIONS") {
 next()
 }
 try {
-const token = req.headers.auth.split(' ')[1] // Bearer asfasnfkajsfnjk
+const token = req.headers.authe.split(' ')[1] // Bearer token
 if (!token) {
 return res.status(401).json({message: "Не авторизован"})
 }
