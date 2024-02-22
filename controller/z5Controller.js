@@ -5,7 +5,7 @@ const {ToDo} = require('../model/model')
 
 function del_id(id)
 {
-    if(id) return `DELETE FROM "ToDos" WHERE id=${id}`;
+    if(id) return `DELETE FROM "ToDos" WHERE id=${id}, `;
     else return undefined;
 }
 function select_id(id)
@@ -18,10 +18,11 @@ class z5Controller
 {
     async del_id(req, res)
     {
-        const {id} = req.query
+        const id = req.params
+        const userIdUser = req.user.id_user
         if(!id) return res.send({ERROR: "Не удалось найти ID!"})
         let query_id=del_id(id)
-        let check_id=await ToDo.findAll({where: {id}})
+        let check_id=await ToDo.findAll({where: {userIdUser}})
         if(!check_id[0]) return res.json({ERROR: `Данные по ID ${id} не найдены!`})
         try {
             await sequelize.query(query_id)

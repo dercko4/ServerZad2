@@ -14,7 +14,7 @@ class updateUserController
 {
     async update_user(req, res)
     {
-        const {id_user} = req.query
+        const {id_user} = req.user.id_user
         if(!id_user) return res.json({messenge: "Вы не ввели какой ID нужно редактировать!"})
         const data = req.body
         let query_login=check_login(id_user, data.login)
